@@ -14,8 +14,8 @@ class Manager:
         self.__inner_data__ = DataCollection()
         self.__knn__ = KNN(3)
     
-    def load_csv(self):
-        data_set = csv.reader(open('lol.txt'))
+    def load_csv(self, file : str):
+        data_set = csv.reader(open(file))
         self.__inner_headers__ = next(data_set)
         for line in data_set:
             self.__inner_data__.append_data(Data(line[:-1], line[-1]))
@@ -30,10 +30,9 @@ class Manager:
         division = int(round(len(originalDataCollection)*0.25,0))
         dataTrain = originalDataCollection[division:]
         dataTest = originalDataCollection[:division]
-        for newData in dataTest:
-            self.__knn__.execute(newData, dataTrain)
-        self.generate_confusion_matrix(dataTest, division)
-        self.show_csv()
+        for data in dataTest:
+            self.__knn__.execute(data, dataTrain)
+        self.generate_confusion_matrix(dataTest, originalDataCollection[:division])
 
 
     def execute_knn(self, newDataFile):
@@ -44,20 +43,23 @@ class Manager:
         self.__knn__.execute(newData, self.__inner_data__.get_collection())
         self.__inner_data__.append_data(newData)
 
-    def generate_confusion_matrix(self, tested : List[Data], division : int):
+    def generate_confusion_matrix(self, predicted : List[Data], actual : List[Data]):
         true_values : List[str] = list()
         predicted_values : List[str] = list()
-        for data_og in (self.__inner_data__.get_collection())[:division]:
-            true_values.append(data_og.get_classification())
-            print(data_og.get_classification())
 
-        for data_test in tested:
+        print("PREDICTED")
+        for data_test in predicted:
             predicted_values.append(data_test.get_classification())
             print(data_test.get_classification())
 
+        print("ACTUAL")
+        for data_og in actual:
+            true_values.append(data_og.get_classification())
+            print(data_og.get_classification())
+
         confusion_matrix = metrics.confusion_matrix(true_values, predicted_values)
 
-        cm_display = metrics.ConfusionMatrixDisplay(confusion_matrix = confusion_matrix, display_labels = [False, True])
+        cm_display = metrics.ConfusionMatrixDisplay(confusion_matrix = confusion_matrix)
 
         cm_display.plot()
 
