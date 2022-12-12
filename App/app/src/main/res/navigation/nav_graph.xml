@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/FirstFragment">
+
+    <fragment
+        android:id="@+id/FirstFragment"
+        android:name="com.example.projetoia.FirstFragment"
+        android:label="Matriz Confusão"
+        tools:layout="@layout/fragment_first">
+        <action
+            android:id="@+id/action_FirstFragment_to_Oque"
+            app:destination="@id/Oque" />
+        <action
+            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            app:destination="@id/SecondFragment" />
+        <action
+            android:id="@+id/action_FirstFragment_to_Resultado"
+            app:destination="@id/Resultado" />
+        <action
+            android:id="@+id/action_FirstFragment_to_Integrantes"
+            app:destination="@id/Integrantes" />
+    </fragment>
+    <fragment
+        android:id="@+id/SecondFragment"
+        android:name="com.example.projetoia.SecondFragment"
+        android:label="Entrada"
+        tools:layout="@layout/fragment_second"/>
+    <fragment
+        android:id="@+id/Resultado"
+        android:name="com.example.projetoia.Resultado"
+        android:label="Resultado"
+        tools:layout="@layout/resultado"/>
+    <fragment
+        android:id="@+id/Oque"
+        android:name="com.example.projetoia.Resultado"
+        android:label="Matriz Confusão o que é ?"
+        tools:layout="@layout/oque"/>
+    <fragment
+        android:id="@+id/Integrantes"
+        android:name="com.example.projetoia.Integrantes"
+        android:label="Integrantes do Trabalho"
+        tools:layout="@layout/integrantes"/>
+    </navigation>
