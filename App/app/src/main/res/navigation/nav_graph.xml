@@ -7,40 +7,48 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.example.projetoia.FirstFragment"
-        android:label="Matriz Confusão"
+        android:name="com.example.app.FirstFragment"
+        android:label="Página Inicial"
         tools:layout="@layout/fragment_first">
-        <action
-            android:id="@+id/action_FirstFragment_to_Oque"
-            app:destination="@id/Oque" />
+
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
         <action
-            android:id="@+id/action_FirstFragment_to_Resultado"
-            app:destination="@id/Resultado" />
+            android:id="@+id/action_FirstFragment_to_Oque"
+            app:destination="@id/Oque" />
+        <action
+            android:id="@+id/action_FirstFragment_to_Resultados"
+            app:destination="@id/Resultados" />
         <action
             android:id="@+id/action_FirstFragment_to_Integrantes"
             app:destination="@id/Integrantes" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.example.projetoia.SecondFragment"
-        android:label="Entrada"
-        tools:layout="@layout/fragment_second"/>
-    <fragment
-        android:id="@+id/Resultado"
-        android:name="com.example.projetoia.Resultado"
-        android:label="Resultado"
-        tools:layout="@layout/resultado"/>
-    <fragment
-        android:id="@+id/Oque"
-        android:name="com.example.projetoia.Resultado"
-        android:label="Matriz Confusão o que é ?"
-        tools:layout="@layout/oque"/>
+        android:name="com.example.app.SecondFragment"
+        android:label="Visualizar CSV"
+        tools:layout="@layout/fragment_second">
+        <action
+            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
     <fragment
         android:id="@+id/Integrantes"
-        android:name="com.example.projetoia.Integrantes"
-        android:label="Integrantes do Trabalho"
-        tools:layout="@layout/integrantes"/>
-    </navigation>
+        android:name="com.example.app.Integrantes"
+        android:label="Integrantes"
+        tools:layout="@layout/integrantes">
+    </fragment>
+    <fragment
+        android:id="@+id/Oque"
+        android:name="com.example.app.Oque"
+        android:label="O que é a Matriz Confusão ?"
+        tools:layout="@layout/oque">
+    </fragment>
+    <fragment
+        android:id="@+id/Resultados"
+        android:name="com.example.app.Resultados"
+        android:label="Resultados"
+        tools:layout="@layout/resultado">
+    </fragment>
+</navigation>
