@@ -63,8 +63,7 @@ class Manager:
 
         cm_display.plot()
 
-        plt.show()
-
+        plt.savefig('./IA/Result/foo.png', bbox_inches='tight')
 
 
 

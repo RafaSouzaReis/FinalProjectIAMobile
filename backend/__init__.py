@@ -5,10 +5,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def start():
-    #application = Manager()
-    #application.load_csv('./IA/lol.txt')
-    #application.train_knn()
-    print('oie')
+    application = Manager()
+    application.load_csv('./IA/fired_data.txt')
+    application.train_knn()
 
 if __name__ == '__main__':
     app.run()
