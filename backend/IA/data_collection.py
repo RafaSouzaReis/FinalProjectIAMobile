@@ -1,5 +1,5 @@
 from typing import List
-from data import Data
+from IA.data import Data
 
 
 class DataCollection:

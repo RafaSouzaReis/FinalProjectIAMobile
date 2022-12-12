@@ -1,9 +1,9 @@
 import csv
 import random
-from data import Data
-from data_collection import DataCollection
-from distance_generator import DistanceGenerator
-from k_nearest_neighbor import KNN
+from IA.data import Data
+from IA.data_collection import DataCollection
+from IA.distance_generator import DistanceGenerator
+from IA.k_nearest_neighbor import KNN
 from typing import List
 from sklearn import metrics
 import matplotlib.pyplot as plt  

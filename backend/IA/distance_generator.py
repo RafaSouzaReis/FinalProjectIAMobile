@@ -1,5 +1,5 @@
-from data import Data
-from data_collection import DataCollection
+from IA.data import Data
+from IA.data_collection import DataCollection
 import math
 
 class DistanceGenerator:

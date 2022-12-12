@@ -1,6 +1,6 @@
 from typing import List
-from data import Data
-from distance_generator import DistanceGenerator
+from IA.data import Data
+from IA.distance_generator import DistanceGenerator
 
 class KNN:
     def __init__(self, k : int):
