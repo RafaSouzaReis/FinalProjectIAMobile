@@ -1,35 +1,14 @@
 package com.example.app;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
-import com.example.app.databinding.IntegrantesBinding;
-
-public class Integrantes extends Fragment {
-
-    private IntegrantesBinding binding;
+public class Integrantes extends AppCompatActivity {
 
     @Override
-    public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
-    ) {
-
-        binding = IntegrantesBinding.inflate(inflater, container, false);
-        return binding.getRoot();
-
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_integrantes);
     }
-
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
-
 }

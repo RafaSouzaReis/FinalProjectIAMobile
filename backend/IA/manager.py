@@ -1,4 +1,4 @@
-import csv
+import pandas as pd
 import random
 from IA.data import Data
 from IA.data_collection import DataCollection
@@ -15,24 +15,28 @@ class Manager:
         self.__knn__ = KNN(3)
     
     def load_csv(self, file : str):
-        data_set = csv.reader(open(file))
-        self.__inner_headers__ = next(data_set)
-        for line in data_set:
-            self.__inner_data__.append_data(Data(line[:-1], line[-1]))
-
-    def show_csv(self):
-        print(self.__inner_headers__)
-        self.__inner_data__.show_collection()
+        dataframe = pd.read_csv(file, sep=";")
+        columns = dataframe.columns
+        for index in dataframe.index:
+            new_data : List[str] = list()
+            for column in columns:
+                new_data.append(dataframe[column][index])
+            self.__inner_data__.append_data(Data(new_data[:-1],new_data[-1]))
 
     def train_knn(self):
-        originalDataCollection = self.__inner_data__.get_collection()
-        random.shuffle(originalDataCollection)
-        division = int(round(len(originalDataCollection)*0.25,0))
-        dataTrain = originalDataCollection[division:]
-        dataTest = originalDataCollection[:division]
+        copyDataCollection : List[Data] = list()
+
+        for item in self.__inner_data__.get_collection():
+            copyDataCollection.append(Data(item.get_columns(), item.get_classification()))
+
+        division = int(round(len(copyDataCollection)*0.7,0))
+        dataTrain = copyDataCollection[:division]
+        dataTest = copyDataCollection[division:]
+
         for data in dataTest:
             self.__knn__.execute(data, dataTrain)
-        self.generate_confusion_matrix(dataTest, originalDataCollection[:division])
+
+        self.generate_confusion_matrix(dataTest, self.__inner_data__.get_collection()[division:])
 
 
     def execute_knn(self, newDataFile):
@@ -47,15 +51,11 @@ class Manager:
         true_values : List[str] = list()
         predicted_values : List[str] = list()
 
-        print("PREDICTED")
         for data_test in predicted:
             predicted_values.append(data_test.get_classification())
-            print(data_test.get_classification())
 
-        print("ACTUAL")
         for data_og in actual:
             true_values.append(data_og.get_classification())
-            print(data_og.get_classification())
 
         confusion_matrix = metrics.confusion_matrix(true_values, predicted_values)
 
