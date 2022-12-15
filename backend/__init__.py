@@ -23,11 +23,13 @@ def start():
     except KeyError:
         return jsonify({"erro": "Csv nao encontrado"}), 400
 
-    KNN = Manager()
-    KNN.load_csv(StringIO(csv))
-    imagem = KNN.train_knn()
+    algorithm_manager = Manager()
+    algorithm_manager.load_csv(StringIO(csv))
+    algorithm_manager.train_knn()
+    image = algorithm_manager.get_confusion_matrix()
+    accuracy = algorithm_manager.get_accuracy_score()
 
-    return jsonify({"sucesso": True, "imagem": imagem, "accurancy": 51})
+    return jsonify({"sucesso": True, "imagem": imagem, "accurancy": accuracy})
 
 
 if __name__ == '__main__':

@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import random
 from IA.data import Data
 from IA.data_collection import DataCollection
@@ -12,9 +13,11 @@ import base64
 
 class Manager:
     def __init__(self):
-        self.__inner_headers__ : List[str] = list()
         self.__inner_data__ = DataCollection()
         self.__knn__ = KNN()
+        self.__confusion_matrix__ = list()
+        self.__matrix_labels__ : List[str] = list()
+        self.__accuracy_score__ : float = 0
     
     def load_csv(self, file : str):
         dataframe = pd.read_csv(file)
@@ -51,7 +54,7 @@ class Manager:
         for data in dataTest:
             self.__knn__.execute(data, copyDataCollection[:division])
 
-        return self.generate_confusion_matrix(dataTest, self.__inner_data__.get_collection()[division:])
+        self.generate_confusion_matrix(dataTest, self.__inner_data__.get_collection()[division:])
 
     def execute_knn(self, newDataFile):
         newRawData = csv.reader(newDataFile)
@@ -64,23 +67,24 @@ class Manager:
     def generate_confusion_matrix(self, predicted : List[Data], actual : List[Data]):
         true_values : List[str] = list()
         predicted_values : List[str] = list()
-        list_labels : List[str] = list()
+
+        self.__matrix_labels__ = []
 
         for data_test, data_og in zip(predicted, actual):
             predicted_values.append(data_test.get_classification())
             if not data_test.get_classification() in list_labels:
-                list_labels.append(data_test.get_classification())
+                self.__matrix_labels__.append(data_test.get_classification())
             true_values.append(data_og.get_classification())
             if not data_og.get_classification() in list_labels:
-                list_labels.append(data_og.get_classification())
+                self.__matrix_labels__.append(data_og.get_classification())
 
-        confusion_matrix = metrics.confusion_matrix(true_values, predicted_values)
+        self.__confusion_matrix__ = metrics.confusion_matrix(true_values, predicted_values)
+        self.__accuracy_score__ = metrics.accuracy_score(true_values, predicted_values)
 
-        cm_display = metrics.ConfusionMatrixDisplay(confusion_matrix = confusion_matrix, display_labels=list_labels)
+    def get_confusion_matrix(self):
+        cm_display = metrics.ConfusionMatrixDisplay(confusion_matrix = self.__confusion_matrix__, display_labels=self.__matrix_labels__)
 
         cm_display.plot()
-
-        plt.savefig('./IA/Result/foo.png', bbox_inches='tight')
 
         image = None
         with io.BytesIO() as buffer:
@@ -88,3 +92,6 @@ class Manager:
             buffer.seek(0)
             image = base64.b64encode(buffer.getvalue()).decode()
         return image
+
+    def get_accuracy_score(self):
+        return self.__accuracy_score__
