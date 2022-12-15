@@ -27,7 +27,7 @@ def start():
     KNN.load_csv(StringIO(csv))
     imagem = KNN.train_knn()
 
-    return jsonify({"sucesso": True, "imagem": imagem})
+    return jsonify({"sucesso": True, "imagem": imagem, "accurancy": 51})
 
 
 if __name__ == '__main__':

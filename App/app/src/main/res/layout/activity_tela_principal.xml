@@ -8,41 +8,46 @@
 
     <Button
         android:id="@+id/button_first"
-        android:layout_width="321dp"
-        android:layout_height="87dp"
-        android:layout_marginBottom="336dp"
+        android:layout_width="280dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="28dp"
         android:text="Matriz Confusão o Que é ?"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
         android:id="@+id/button_three"
-        android:layout_width="323dp"
-        android:layout_height="70dp"
-        android:layout_marginBottom="236dp"
+        android:layout_width="280dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="16dp"
         android:text="Entradas"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_first" />
 
     <Button
         android:id="@+id/button_two"
-        android:layout_width="410dp"
-        android:layout_height="41dp"
+        android:layout_width="280dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="16dp"
         android:text="Integrantes"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_three" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="367dp"
+        android:layout_height="311dp"
+        android:layout_marginTop="40dp"
         android:src="@drawable/c2a451_6fb08563b7e64572ad479b06ebd2ef6d_mv2"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="77dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.636"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
