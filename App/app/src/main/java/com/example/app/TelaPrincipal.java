@@ -25,24 +25,24 @@ public class TelaPrincipal extends AppCompatActivity {
         buttonFirst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent membersIntent = new Intent(getApplicationContext(), Oque.class);
-                startActivity(membersIntent);
+                Intent oque = new Intent(getApplicationContext(), Oque.class);
+                startActivity(oque);
             }
         });
         Button buttonTwo = (Button) findViewById(R.id.button_two);
         buttonTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent membersIntent = new Intent(getApplicationContext(), Integrantes.class);
-                startActivity(membersIntent);
+                Intent integrantes = new Intent(getApplicationContext(), Integrantes.class);
+                startActivity(integrantes);
             }
         });
         Button buttonThree = (Button) findViewById(R.id.button_three);
         buttonThree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent membersIntent = new Intent(getApplicationContext(), Entradas.class);
-                startActivity(membersIntent);
+                Intent entradas= new Intent(getApplicationContext(), Entradas.class);
+                startActivity(entradas);
             }
         });
     }
