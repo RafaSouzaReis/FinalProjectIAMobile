@@ -1,8 +1,11 @@
 from flask import Flask, request, jsonify
 import json
-#from IA.manager import Manager
+from IA.manager import Manager
+from io import StringIO
+import matplotlib
 
 app = Flask(__name__)
+matplotlib.use('agg')
 
 
 @app.route('/', methods=['POST'])
@@ -20,9 +23,11 @@ def start():
     except KeyError:
         return jsonify({"erro": "Csv nao encontrado"}), 400
 
-    print(csv)
+    KNN = Manager()
+    KNN.load_csv(StringIO(csv))
+    imagem = KNN.train_knn()
 
-    return jsonify({"sucesso": True})
+    return jsonify({"sucesso": True, "imagem": imagem})
 
 
 if __name__ == '__main__':

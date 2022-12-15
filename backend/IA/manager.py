@@ -6,7 +6,9 @@ from IA.distance_generator import DistanceGenerator
 from IA.k_nearest_neighbor import KNN
 from typing import List
 from sklearn import metrics
-import matplotlib.pyplot as plt  
+import matplotlib.pyplot as plt
+import io
+import base64
 
 class Manager:
     def __init__(self):
@@ -49,7 +51,7 @@ class Manager:
         for data in dataTest:
             self.__knn__.execute(data, copyDataCollection[:division])
 
-        self.generate_confusion_matrix(dataTest, self.__inner_data__.get_collection()[division:])
+        return self.generate_confusion_matrix(dataTest, self.__inner_data__.get_collection()[division:])
 
     def execute_knn(self, newDataFile):
         newRawData = csv.reader(newDataFile)
@@ -78,9 +80,11 @@ class Manager:
 
         cm_display.plot()
 
-        plt.savefig('./Result/foo.png', bbox_inches='tight')
+        plt.savefig('./IA/Result/foo.png', bbox_inches='tight')
 
-
-
-
-
+        image = None
+        with io.BytesIO() as buffer:
+            plt.savefig(buffer, format='png')
+            buffer.seek(0)
+            image = base64.b64encode(buffer.getvalue()).decode()
+        return image
