@@ -27,7 +27,7 @@ public class Resultado extends AppCompatActivity {
             Bitmap bitmap = BitmapFactory.decodeByteArray(base64, 0, base64.length);
             ((ImageView) findViewById(R.id.imageView10)).setImageBitmap(bitmap);
 
-            ((TextView) findViewById(R.id.textView5)).setText("Accurancy = " + resultado.accurancy);
+            ((TextView) findViewById(R.id.textView5)).setText("Accuracy = " + resultado.accuracy);
         } catch (Exception ex) {
             ex.printStackTrace();
             finish();

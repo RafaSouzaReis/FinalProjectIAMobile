@@ -72,10 +72,10 @@ class Manager:
 
         for data_test, data_og in zip(predicted, actual):
             predicted_values.append(data_test.get_classification())
-            if not data_test.get_classification() in list_labels:
+            if not data_test.get_classification() in self.__matrix_labels__:
                 self.__matrix_labels__.append(data_test.get_classification())
             true_values.append(data_og.get_classification())
-            if not data_og.get_classification() in list_labels:
+            if not data_og.get_classification() in self.__matrix_labels__:
                 self.__matrix_labels__.append(data_og.get_classification())
 
         self.__confusion_matrix__ = metrics.confusion_matrix(true_values, predicted_values)

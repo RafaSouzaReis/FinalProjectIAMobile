@@ -27,9 +27,9 @@ def start():
     algorithm_manager.load_csv(StringIO(csv))
     algorithm_manager.train_knn()
     image = algorithm_manager.get_confusion_matrix()
-    accuracy = algorithm_manager.get_accuracy_score()
+    accuracy = round(algorithm_manager.get_accuracy_score(), 2)
 
-    return jsonify({"sucesso": True, "imagem": imagem, "accurancy": accuracy})
+    return jsonify({"sucesso": True, "imagem": image, "accuracy": accuracy})
 
 
 if __name__ == '__main__':

@@ -3,5 +3,5 @@ package com.example.app;
 public class JsonResultado {
 
     public String imagem;
-    public String accurancy;
+    public String accuracy;
 }
